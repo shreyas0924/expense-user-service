@@ -26,9 +26,8 @@ public class AuthServiceConsumer {
      @KafkaListener(topics = "${spring.kafka.topic-json.name}", groupId = "${spring.kafka.consumer.group-id}")
      public void listen(UserInfoDto eventData, Acknowledgment acknowledgment) {
           try {
-               // Process the event
-               userService.createOrUpdateUser(eventData);
-               // Acknowledge the message after processing
+               System.out.println("AuthServiceConsumer: Consumed event: " + eventData);
+               // userService.createOrUpdateUser(eventData);
                acknowledgment.acknowledge();
           } catch (Exception ex) {
                ex.printStackTrace();
